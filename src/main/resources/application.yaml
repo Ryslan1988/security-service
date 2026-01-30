@@ -1,9 +1,16 @@
 server:
-  port: 8099
+  port: 0
 
 spring:
   application:
     name: security-service
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
+  instance:
+    preferIpAddress: true
 
 logging:
   level:

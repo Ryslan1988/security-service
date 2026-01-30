@@ -33,7 +33,7 @@ public class SecurityServiceImpl implements SecurityService {
         String readString = Files.readString(Paths.get(filePath));
         if (StringUtils.isBlank(readString)) {
             SecurityResponseDto accountingResponseDto = new SecurityResponseDto(
-                    random.nextInt(), id, Math.random() < 0.5);
+                    random.nextInt(101), id, Math.random() < 0.5);
             objectMapper.writeValue(new File(filePath), List.of(accountingResponseDto));
             return accountingResponseDto;
         }
@@ -46,7 +46,7 @@ public class SecurityServiceImpl implements SecurityService {
         }
 
         SecurityResponseDto accountingResponseDto = new SecurityResponseDto(
-                random.nextInt(), id, Math.random() < 0.5);
+                random.nextInt(101), id, Math.random() < 0.5);
         List<SecurityResponseDto> resList = new ArrayList<>(accountingResponseDtos);
         resList.add(accountingResponseDto);
 
