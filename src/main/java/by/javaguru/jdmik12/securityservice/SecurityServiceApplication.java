@@ -1,4 +1,4 @@
-package by.javaguru.jdmk13.securityservice;
+package by.javaguru.jdmik12.securityservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

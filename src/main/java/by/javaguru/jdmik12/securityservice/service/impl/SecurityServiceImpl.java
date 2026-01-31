@@ -1,9 +1,9 @@
-package by.javaguru.jdmk13.securityservice.service.impl;
+package by.javaguru.jdmik12.securityservice.service.impl;
 
-import by.javaguru.jdmk13.securityservice.model.SecurityRequestDto;
-import by.javaguru.jdmk13.securityservice.model.SecurityResponseDto;
-import by.javaguru.jdmk13.securityservice.service.SecurityService;
-import by.javaguru.jdmk13.securityservice.utils.JsonInputProcess;
+import by.javaguru.jdmik12.securityservice.model.SecurityResponseDto;
+import by.javaguru.jdmik12.securityservice.model.SecurityRequestDto;
+import by.javaguru.jdmik12.securityservice.service.SecurityService;
+import by.javaguru.jdmik12.securityservice.utils.JsonInputProcess;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

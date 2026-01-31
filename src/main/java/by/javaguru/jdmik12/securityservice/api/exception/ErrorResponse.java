@@ -1,4 +1,4 @@
-package by.javaguru.jdmk13.securityservice.api.exception;
+package by.javaguru.jdmik12.securityservice.api.exception;
 
 import java.time.ZonedDateTime;
 

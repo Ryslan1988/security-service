@@ -1,6 +1,6 @@
-package by.javaguru.jdmk13.securityservice.utils;
+package by.javaguru.jdmik12.securityservice.utils;
 
-import by.javaguru.jdmk13.securityservice.model.SecurityResponseDto;
+import by.javaguru.jdmik12.securityservice.model.SecurityResponseDto;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.micrometer.common.util.StringUtils;
 import org.springframework.stereotype.Component;

@@ -8,7 +8,7 @@
         <version>3.4.1</version>
         <relativePath/>
     </parent>
-    <groupId>by.javaguru.jdmk13</groupId>
+    <groupId>by.javaguru.jdmik12</groupId>
     <artifactId>security-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>security-service</name>
@@ -32,7 +32,7 @@
         <org.projectlombok>1.18.24</org.projectlombok>
         <spring.boot.maven.compiler.plugin.version>3.10.1</spring.boot.maven.compiler.plugin.version>
         <spring.boot.maven.plugin.version>3.0.1</spring.boot.maven.plugin.version>
-        <springdoc-openapi-starter-webmvc-ui.version>2.0.2</springdoc-openapi-starter-webmvc-ui.version>
+        <springdoc-openapi-starter-webmvc-ui.version>2.7.0</springdoc-openapi-starter-webmvc-ui.version>
         <spring-cloud.version>2024.0.0</spring-cloud.version>
     </properties>
     <dependencies>

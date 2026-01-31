@@ -1,8 +1,8 @@
-package by.javaguru.jdmk13.securityservice.api.controllers;
+package by.javaguru.jdmik12.securityservice.api.controllers;
 
-import by.javaguru.jdmk13.securityservice.model.SecurityRequestDto;
-import by.javaguru.jdmk13.securityservice.model.SecurityResponseDto;
-import by.javaguru.jdmk13.securityservice.service.impl.SecurityServiceImpl;
+import by.javaguru.jdmik12.securityservice.model.SecurityResponseDto;
+import by.javaguru.jdmik12.securityservice.model.SecurityRequestDto;
+import by.javaguru.jdmik12.securityservice.service.impl.SecurityServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
