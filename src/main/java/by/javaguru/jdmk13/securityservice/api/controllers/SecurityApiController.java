@@ -1,4 +1,4 @@
-package by.javaguru.jdmk13.securityservice.controllers;
+package by.javaguru.jdmk13.securityservice.api.controllers;
 
 import by.javaguru.jdmk13.securityservice.model.SecurityRequestDto;
 import by.javaguru.jdmk13.securityservice.model.SecurityResponseDto;
@@ -8,8 +8,8 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -22,26 +22,29 @@ import java.io.IOException;
 
 import static org.springframework.util.MimeTypeUtils.APPLICATION_JSON_VALUE;
 
-@Tag(name = "About Controller")
+@Tag(name = "Security Controller")
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("api/v1/security/check")
+@Slf4j
 public class SecurityApiController {
 
     private final SecurityServiceImpl accountingService;
 
-    @Operation(summary = "Get about from CV")
+    @Operation(summary = "Security auth")
     @ApiResponse(
             responseCode = "201",
             description = "CREATED",
             content = @Content(mediaType = APPLICATION_JSON_VALUE, schema = @Schema(implementation = String.class)))
-    @ApiResponse(responseCode = "401", description = "UNAUTHORIZED - no token provided")
     @ApiResponse(responseCode = "400", description = "BAD REQUEST - Invalid input data")
     @PostMapping
-    public ResponseEntity<SecurityResponseDto> check(@RequestBody @Valid SecurityRequestDto requestDto) throws IOException {
-        SecurityResponseDto accountingResponseDto = accountingService.getMockJsonById(requestDto);
+    public ResponseEntity<SecurityResponseDto> check(@RequestBody SecurityRequestDto requestDto) throws IOException {
+        log.debug("Received security request: {}", requestDto);
+        SecurityResponseDto securityResponseDto = accountingService.getMockJsonById(requestDto);
+        log.debug("Response security request: {}", securityResponseDto);
         return ResponseEntity.status(HttpStatus.CREATED)
                 .contentType(MediaType.APPLICATION_JSON)
-                .body(accountingResponseDto);
+                .body(securityResponseDto);
     }
+
 }
