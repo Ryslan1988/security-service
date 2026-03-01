@@ -27,19 +27,19 @@ public class JsonInputProcess {
                     random.nextInt(101), id, Math.random() < 0.5);
             objectMapper.writeValue(new File(FILE_PATCH), List.of(securityResponseDto));
             return CheckSecurityEvent.builder()
-                    .withId(securityResponseDto.getId())
-                    .withRequestId(securityResponseDto.getRequestId())
-                    .withIsPassed(securityResponseDto.isPassed())
+                    .withId(securityResponseDto.id())
+                    .withRequestId(securityResponseDto.requestId())
+                    .withIsPassed(securityResponseDto.passed())
                     .build();
         }
         List<SecurityResponseDto> securityResponseDtoList = List.of(objectMapper.readValue(readString, SecurityResponseDto[].class));
 
         for (SecurityResponseDto responseDto : securityResponseDtoList) {
-            if (responseDto.getRequestId() == id) {
+            if (responseDto.requestId() == id) {
                 return CheckSecurityEvent.builder()
-                        .withId(responseDto.getId())
-                        .withRequestId(responseDto.getRequestId())
-                        .withIsPassed(responseDto.isPassed())
+                        .withId(responseDto.id())
+                        .withRequestId(responseDto.requestId())
+                        .withIsPassed(responseDto.passed())
                         .build();
             }
         }
@@ -52,9 +52,9 @@ public class JsonInputProcess {
         objectMapper.writeValue(new File(FILE_PATCH), resList);
 
         return CheckSecurityEvent.builder()
-                .withId(securityResponseDto.getId())
-                .withRequestId(securityResponseDto.getRequestId())
-                .withIsPassed(securityResponseDto.isPassed())
+                .withId(securityResponseDto.id())
+                .withRequestId(securityResponseDto.requestId())
+                .withIsPassed(securityResponseDto.passed())
                 .build();
     }
 }

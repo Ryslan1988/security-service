@@ -34,6 +34,8 @@
         <spring.boot.maven.plugin.version>3.0.1</spring.boot.maven.plugin.version>
         <springdoc-openapi-starter-webmvc-ui.version>2.7.0</springdoc-openapi-starter-webmvc-ui.version>
         <spring-cloud.version>2024.0.0</spring-cloud.version>
+        <spring-cloud-starter-netflix-eureka-client>4.0.4</spring-cloud-starter-netflix-eureka-client>
+        <by.javaguru.jdmik12.common>1.0.0</by.javaguru.jdmik12.common>
     </properties>
     <dependencies>
         <dependency>
@@ -61,7 +63,7 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
-            <version>4.0.4</version>
+            <version>${spring-cloud-starter-netflix-eureka-client}</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
@@ -71,7 +73,7 @@
         <dependency>
             <groupId>by.javaguru.jdmik12.common</groupId>
             <artifactId>dto</artifactId>
-            <version>1.0.0</version>
+            <version>${by.javaguru.jdmik12.common}</version>
         </dependency>
     </dependencies>
 

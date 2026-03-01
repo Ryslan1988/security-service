@@ -7,7 +7,7 @@ spring:
   config:
     import: optional:file:.env.sample[.properties]
   kafka:
-    bootstrap-servers: 127.0.0.1:9092,127.0.0.1:9094,127.0.0.1:9096
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:127.0.0.1:9092,127.0.0.1:9094,127.0.0.1:9096}
     consumer:
       group-id: jdmik12-${spring.application.name}-consumer-group
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
@@ -34,4 +34,4 @@ eureka:
 
 logging:
   level:
-    root: DEBUG
+    root: INFO
