@@ -1,5 +1,6 @@
 package by.javaguru.jdmik12.securityservice.service.impl;
 
+import by.javaguru.jdmik12.common.security.message.event.CheckSecurityEvent;
 import by.javaguru.jdmik12.securityservice.model.SecurityResponseDto;
 import by.javaguru.jdmik12.securityservice.model.SecurityRequestDto;
 import by.javaguru.jdmik12.securityservice.service.SecurityService;
@@ -15,8 +16,8 @@ public class SecurityServiceImpl implements SecurityService {
     private final JsonInputProcess jsonInputProcess;
 
     @Override
-    public SecurityResponseDto getMockJsonById(SecurityRequestDto requestDto) throws IOException {
-        return jsonInputProcess.jsonFileProcessUpdater(requestDto.getRequestId());
+    public CheckSecurityEvent getMockJsonById(Long requestId) throws IOException {
+        return jsonInputProcess.jsonFileProcessUpdater(requestId);
     }
 
 }

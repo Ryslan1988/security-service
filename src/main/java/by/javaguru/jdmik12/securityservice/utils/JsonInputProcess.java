@@ -1,5 +1,6 @@
 package by.javaguru.jdmik12.securityservice.utils;
 
+import by.javaguru.jdmik12.common.security.message.event.CheckSecurityEvent;
 import by.javaguru.jdmik12.securityservice.model.SecurityResponseDto;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.micrometer.common.util.StringUtils;
@@ -19,19 +20,27 @@ public class JsonInputProcess {
     private final ObjectMapper objectMapper = new ObjectMapper();
     private final Random random = new Random();
 
-    public SecurityResponseDto jsonFileProcessUpdater(long id) throws IOException {
+    public CheckSecurityEvent jsonFileProcessUpdater(long id) throws IOException {
         String readString = Files.readString(Paths.get(FILE_PATCH));
         if (StringUtils.isBlank(readString)) {
             SecurityResponseDto securityResponseDto = new SecurityResponseDto(
                     random.nextInt(101), id, Math.random() < 0.5);
             objectMapper.writeValue(new File(FILE_PATCH), List.of(securityResponseDto));
-            return securityResponseDto;
+            return CheckSecurityEvent.builder()
+                    .withId(securityResponseDto.getId())
+                    .withRequestId(securityResponseDto.getRequestId())
+                    .withIsPassed(securityResponseDto.isPassed())
+                    .build();
         }
         List<SecurityResponseDto> securityResponseDtoList = List.of(objectMapper.readValue(readString, SecurityResponseDto[].class));
 
         for (SecurityResponseDto responseDto : securityResponseDtoList) {
             if (responseDto.getRequestId() == id) {
-                return responseDto;
+                return CheckSecurityEvent.builder()
+                        .withId(responseDto.getId())
+                        .withRequestId(responseDto.getRequestId())
+                        .withIsPassed(responseDto.isPassed())
+                        .build();
             }
         }
 
@@ -42,6 +51,10 @@ public class JsonInputProcess {
 
         objectMapper.writeValue(new File(FILE_PATCH), resList);
 
-        return securityResponseDto;
+        return CheckSecurityEvent.builder()
+                .withId(securityResponseDto.getId())
+                .withRequestId(securityResponseDto.getRequestId())
+                .withIsPassed(securityResponseDto.isPassed())
+                .build();
     }
 }
