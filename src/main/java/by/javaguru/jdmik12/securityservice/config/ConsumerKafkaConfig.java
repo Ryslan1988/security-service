@@ -1,5 +1,9 @@
 package by.javaguru.jdmik12.securityservice.config;
 
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import jakarta.validation.ValidationException;
+import org.apache.commons.lang3.SerializationException;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.springframework.boot.autoconfigure.kafka.KafkaProperties;
@@ -12,6 +16,8 @@ import org.springframework.kafka.listener.DefaultErrorHandler;
 import org.springframework.kafka.support.serializer.ErrorHandlingDeserializer;
 import org.springframework.kafka.support.serializer.JsonDeserializer;
 import org.springframework.util.backoff.FixedBackOff;
+
+import java.nio.file.AccessDeniedException;
 
 @Configuration
 public class ConsumerKafkaConfig {
@@ -50,7 +56,9 @@ public class ConsumerKafkaConfig {
     public DefaultErrorHandler errorHandler() {
         FixedBackOff backOff = new FixedBackOff(1000L, 3);
         DefaultErrorHandler errorHandler = new DefaultErrorHandler(backOff);
-        errorHandler.addNotRetryableExceptions(IllegalArgumentException.class);
+        errorHandler.addNotRetryableExceptions(IllegalArgumentException.class, IllegalStateException.class,
+                ValidationException.class, JsonParseException.class, JsonMappingException.class, SerializationException.class,
+                AccessDeniedException.class);
 
         return errorHandler;
     }
