@@ -23,6 +23,8 @@ integration:
   kafka:
     consumer:
       security.topic.name: jdmik12.security.check.command
+    producer:
+      dlt.topic.name: jdmik12.recruitment.dlt.command
 
 eureka:
   client:
