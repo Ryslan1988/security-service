@@ -24,7 +24,7 @@ integration:
     consumer:
       security.topic.name: jdmik12.security.check.command
     producer:
-      dlt.topic.name: jdmik12.recruitment.dlt.command
+      dlt.topic.name: jdmik12.recruitment-pr.dlt.command
 
 eureka:
   client:
