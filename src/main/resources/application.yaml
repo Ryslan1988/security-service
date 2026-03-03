@@ -24,15 +24,12 @@ integration:
     consumer:
       security.topic.name: jdmik12.security.check.command
     producer:
-      dlt.topic.name: jdmik12.recruitment-pr.dlt.command
-
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
-  instance:
-    preferIpAddress: true
-    instance-id: ${spring.application.name}:${server.port}
+      dlt.topic.name: jdmik12.security.command.dlt
+    security-command-topic:
+      name: jdmik12.security.command
+      partitions: 3
+      replicas: 3
+      min-in-sync-replicas: 2
 
 logging:
   level:

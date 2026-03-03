@@ -1,18 +1,22 @@
 package by.javaguru.jdmik12.securityservice.config;
 
 import by.javaguru.jdmik12.common.base.KafkaMessage;
+import by.javaguru.jdmik12.securityservice.model.SecurityTopicProperties;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import jakarta.validation.ValidationException;
 import org.apache.commons.lang3.SerializationException;
+import org.apache.kafka.clients.admin.NewTopic;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.TopicPartition;
+import org.apache.kafka.common.config.TopicConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.kafka.KafkaProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
+import org.springframework.kafka.config.TopicBuilder;
 import org.springframework.kafka.core.ConsumerFactory;
 import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
 import org.springframework.kafka.core.KafkaTemplate;
@@ -23,15 +27,16 @@ import org.springframework.kafka.support.serializer.JsonDeserializer;
 import org.springframework.util.backoff.FixedBackOff;
 
 import java.nio.file.AccessDeniedException;
+import java.util.Map;
 
 @Configuration
 public class ConsumerKafkaConfig {
+    private String DLT_SUFFIX = ".dlt";
     @Value("${integration.kafka.producer.dlt.topic.name}")
     private String dltTopic;
 
     @Bean
     public ConcurrentKafkaListenerContainerFactory<String, Object> kafkaListenerContainerFactory(
-            KafkaProperties kafkaProperties,
             ConsumerFactory<String, Object> consumerFactory,
             DefaultErrorHandler errorHandler) {
 
@@ -74,6 +79,30 @@ public class ConsumerKafkaConfig {
                 AccessDeniedException.class);
 
         return errorHandler;
+    }
+
+    @Bean
+    NewTopic securityCommandTopic(SecurityTopicProperties properties) {
+        return TopicBuilder
+                .name(properties.getName())
+                .partitions(properties.getPartitions())
+                .replicas(properties.getReplicas())
+                .configs(Map.of(
+                        TopicConfig.MIN_IN_SYNC_REPLICAS_CONFIG,
+                        String.valueOf(properties.getMinInSyncReplicas())))
+                .build();
+    }
+
+    @Bean
+    NewTopic securityDltTopic(SecurityTopicProperties properties) {
+        return TopicBuilder
+                .name(properties.getName() + DLT_SUFFIX)
+                .partitions(properties.getPartitions())
+                .replicas(properties.getReplicas())
+                .configs(Map.of(
+                        TopicConfig.MIN_IN_SYNC_REPLICAS_CONFIG,
+                        String.valueOf(properties.getMinInSyncReplicas())))
+                .build();
     }
 
 }
