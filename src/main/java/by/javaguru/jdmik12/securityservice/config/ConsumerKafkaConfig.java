@@ -31,7 +31,7 @@ import java.util.Map;
 
 @Configuration
 public class ConsumerKafkaConfig {
-    private String DLT_SUFFIX = ".dlt";
+    private final String DLT_SUFFIX = ".dlt";
     @Value("${integration.kafka.producer.dlt.topic.name}")
     private String dltTopic;
 
