@@ -1,18 +1,36 @@
 server:
-  port: ${SERVER_PORT:8080}
+  port: ${SERVER_PORT:8081}
 
 spring:
   application:
     name: security-service
+  config:
+    import: optional:file:.env.sample[.properties]
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:127.0.0.1:9092,127.0.0.1:9094,127.0.0.1:9096}
+    consumer:
+      group-id: jdmik12-${spring.application.name}-consumer-group
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+    properties:
+      spring.json.trusted.packages: by.javaguru.jdmik12.common.security.message.*
+    producer:
+      acks: all
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
 
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
-  instance:
-    preferIpAddress: true
-    instance-id: ${spring.application.name}:${server.port}
+integration:
+  kafka:
+    consumer:
+      security.topic.name: jdmik12.security.check.command
+    producer:
+      dlt.topic.name: jdmik12.security.check.command.dlt
+    security-command-topic:
+      name: jdmik12.security.check.command
+      partitions: 3
+      replicas: 3
+      min-in-sync-replicas: 2
 
 logging:
   level:
-    root: DEBUG
+    root: INFO
