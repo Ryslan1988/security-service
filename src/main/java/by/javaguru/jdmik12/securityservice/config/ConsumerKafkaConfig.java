@@ -31,18 +31,20 @@ import java.util.Map;
 
 @Configuration
 public class ConsumerKafkaConfig {
-    private String DLT_SUFFIX = ".dlt";
+    private final String DLT_SUFFIX = ".dlt";
     @Value("${integration.kafka.producer.dlt.topic.name}")
     private String dltTopic;
 
     @Bean
     public ConcurrentKafkaListenerContainerFactory<String, Object> kafkaListenerContainerFactory(
+            KafkaTemplate<String, KafkaMessage> kafkaTemplate,
             ConsumerFactory<String, Object> consumerFactory,
             DefaultErrorHandler errorHandler) {
 
         var factory = new ConcurrentKafkaListenerContainerFactory<String, Object>();
         factory.setConsumerFactory(consumerFactory);
         factory.setCommonErrorHandler(errorHandler);
+        factory.setReplyTemplate(kafkaTemplate);
 
         return factory;
     }
