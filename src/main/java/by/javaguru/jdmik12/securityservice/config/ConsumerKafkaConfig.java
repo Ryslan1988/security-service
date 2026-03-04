@@ -37,12 +37,14 @@ public class ConsumerKafkaConfig {
 
     @Bean
     public ConcurrentKafkaListenerContainerFactory<String, Object> kafkaListenerContainerFactory(
+            KafkaTemplate<String, KafkaMessage> kafkaTemplate,
             ConsumerFactory<String, Object> consumerFactory,
             DefaultErrorHandler errorHandler) {
 
         var factory = new ConcurrentKafkaListenerContainerFactory<String, Object>();
         factory.setConsumerFactory(consumerFactory);
         factory.setCommonErrorHandler(errorHandler);
+        factory.setReplyTemplate(kafkaTemplate);
 
         return factory;
     }
