@@ -47,6 +47,11 @@ integration:
       replicas: 3
       min-in-sync-replicas: 2
 
+jwt:
+  secret: "your-256-bit-secret-key-here-must-be-long-enough"
+  access-token-expiration: 900        # 15 минут в секундах
+  refresh-token-expiration: 2592000
+
 logging:
   level:
     root: INFO
