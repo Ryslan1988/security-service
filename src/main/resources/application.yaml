@@ -18,6 +18,22 @@ spring:
       acks: all
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      password: pass
+      timeout: 2000ms
+      lettuce:
+        pool:
+          max-active: 10
+          max-idle: 5
+          min-idle: 1
+
+  cache:
+    type: redis
+    redis:
+      time-to-live: 600000
 
 integration:
   kafka:
@@ -30,6 +46,11 @@ integration:
       partitions: 3
       replicas: 3
       min-in-sync-replicas: 2
+
+jwt:
+  secret: "your-256-bit-secret-key-here-must-be-long-enough"
+  access-token-expiration: 900        # 15 минут в секундах
+  refresh-token-expiration: 2592000
 
 logging:
   level:

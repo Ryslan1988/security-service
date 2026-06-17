@@ -1,7 +1,7 @@
 package by.javaguru.jdmik12.securityservice.config;
 
-import by.javaguru.jdmik12.common.base.KafkaMessage;
 import by.javaguru.jdmik12.securityservice.model.SecurityTopicProperties;
+import by.javaguru.jdmik12.securityservice.model.dto.KafkaMessage;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import jakarta.validation.ValidationException;

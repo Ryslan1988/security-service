@@ -1,7 +1,7 @@
 package by.javaguru.jdmik12.securityservice.listener;
 
-import by.javaguru.jdmik12.common.base.KafkaMessage;
-import by.javaguru.jdmik12.common.security.message.command.CheckSecurityCommand;
+import by.javaguru.jdmik12.securityservice.model.dto.CheckSecurityCommand;
+import by.javaguru.jdmik12.securityservice.model.dto.KafkaMessage;
 import by.javaguru.jdmik12.securityservice.service.SecurityService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
