@@ -1,6 +1,6 @@
 package by.javaguru.jdmik12.securityservice.service;
 
-import by.javaguru.jdmik12.common.security.message.event.CheckSecurityEvent;
+import by.javaguru.jdmik12.securityservice.model.dto.CheckSecurityEvent;
 
 import java.io.IOException;
 

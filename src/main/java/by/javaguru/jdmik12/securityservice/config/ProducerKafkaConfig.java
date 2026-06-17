@@ -1,6 +1,6 @@
 package by.javaguru.jdmik12.securityservice.config;
 
-import by.javaguru.jdmik12.common.base.KafkaMessage;
+import by.javaguru.jdmik12.securityservice.model.dto.KafkaMessage;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.boot.autoconfigure.kafka.KafkaProperties;
 import org.springframework.context.annotation.Bean;

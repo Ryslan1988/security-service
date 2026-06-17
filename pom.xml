@@ -51,9 +51,8 @@
             <artifactId>spring-kafka</artifactId>
         </dependency>
         <dependency>
-            <groupId>by.javaguru.jdmik12.common</groupId>
-            <artifactId>dto</artifactId>
-            <version>${by.javaguru.jdmik12.common}</version>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
         </dependency>
     </dependencies>
 
